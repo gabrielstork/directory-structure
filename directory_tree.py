@@ -8,42 +8,46 @@ EMOJI_C = emoji.emojize(':page_facing_up:')
 
 
 class Tree:
-    def __init__(self, directory, complete=False):
-        self.directory = directory
+    def __init__(self, path, complete=False):
+        self.path = path
         self.complete = complete
 
-        self.base = f'{EMOJI_A} {os.path.basename(self.directory)}'
         self.folder = ''
         self.file = ''
+ 
+    def get_base(self):
+        if self.complete:
+            drive = self.path.split('/')[0]
+            self.base = f'{EMOJI_A} {drive}'
 
-    def get_complete_base(self):
-        directories = self.directory.split('/')
-        self.base = f'{EMOJI_A} {directories[0]}'
+            directories = self.path.split('/')[1:]
 
-        for directory in directories[1:]:
-            lines = self.base.count('\n')
-            
-            self.base += f'\n{"  " * (lines)}|_{EMOJI_A} {directory}'
-        
-        return lines + 1
+            for directory in directories:
+                lines = self.base.count('\n')
+
+                self.base += f'\n{"  " * (lines)}|_{EMOJI_A} {directory}'
+
+            return lines + 1
+        else:
+            directory = self.path.split('/')[-1]
+            self.base = f'{EMOJI_A} {directory}'
+
+            return 0
 
     def get_folders(self):
-        folders = [folder for folder in os.listdir(self.directory)
-                   if os.path.isdir(os.path.join(self.directory, folder))]
+        folders = [folder for folder in os.listdir(self.path)
+                   if os.path.isdir(os.path.join(self.path, folder))]
 
         return folders
     
     def get_files(self):
-        files = [file for file in os.listdir(self.directory)
-                 if os.path.isfile(os.path.join(self.directory, file))]
+        files = [file for file in os.listdir(self.path)
+                 if os.path.isfile(os.path.join(self.path, file))]
 
         return files
 
     def __str__(self):
-        if self.complete:
-            lines = self.get_complete_base()
-        else:
-            lines = 0
+        lines = self.get_base()
 
         folders = self.get_folders()
 
