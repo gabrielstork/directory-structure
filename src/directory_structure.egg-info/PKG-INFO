@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: directory-structure
+Version: 1.0.0
+Summary: Print a directory tree structure in your Python code.
+Home-page: https://github.com/gabrielstork/directory-structure
+Author: Gabriel Stork
+Author-email: storkdeveloper@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/gabrielstork/directory-structure/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # directory-structure
 
 Print a directory tree structure in your Python code.
@@ -71,3 +88,5 @@ print(path)
 |_📄 requirements.txt
 |_📄 setup.py
 ```
+
+

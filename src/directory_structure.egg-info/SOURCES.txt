@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/directory_structure/__init__.py
+src/directory_structure/tree.py
+src/directory_structure.egg-info/PKG-INFO
+src/directory_structure.egg-info/SOURCES.txt
+src/directory_structure.egg-info/dependency_links.txt
+src/directory_structure.egg-info/requires.txt
+src/directory_structure.egg-info/top_level.txt
