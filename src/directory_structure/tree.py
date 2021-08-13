@@ -1,54 +1,65 @@
-import os
+import pathlib
 import emoji
 
 
-EMOJI_A = emoji.emojize(':open_file_folder:')
-EMOJI_B = emoji.emojize(':file_folder:')
-EMOJI_C = emoji.emojize(':page_facing_up:')
+EMOJI_BASE = emoji.emojize(':open_file_folder:')
+EMOJI_FOLDER = emoji.emojize(':file_folder:')
+EMOJI_FILE = emoji.emojize(':page_facing_up:')
 
 
 class Tree:
-    def __init__(self, path: str, complete: bool = False) -> None:
-        self.path = path
-        self.complete = complete
+    def __init__(self, path: str, absolute: bool = False) -> None:
+        self.path = pathlib.Path(path)
+        self.absolute = absolute
 
-        self.folder = ''
-        self.file = ''
+        self._lines = 0
+        self._base = []
+        self._folder = []
+        self._file = []
 
-    def get_base(self) -> None:
-        if self.complete:
-            drive = self.path.split('/')[0]
-            directories = self.path.split('/')[1:]
-            self.base = f'{EMOJI_A} {drive}'
+    def _space(self) -> str:
+        return f'\n{"  " * self._lines}'
+
+    def _get_base(self) -> None:
+        self.path = self.path.resolve()
+
+        if self.absolute:
+            if isinstance(self.path, pathlib.WindowsPath):
+                self._base.append(f'{EMOJI_BASE} {self.path.drive}')
+            elif isinstance(self.path, pathlib.PosixPath):
+                self._base.append(f'{EMOJI_BASE} {self.path.root}')
+
+            directories = self.path.parts[1:]
 
             for directory in directories:
-                self.lines = self.base.count('\n')
-                self.base += f'\n{"  " * (self.lines)}|_{EMOJI_A} {directory}'
-
-            self.lines += 1
+                self._base.append(f'{self._space()}|_{EMOJI_BASE} {directory}')
+                self._lines = len(self._base) - 1
         else:
-            directory = self.path.split('/')[-1]
-            self.base = f'{EMOJI_A} {directory}'
+            directory = self.path.name
+            self._base.append(f'{EMOJI_BASE} {directory}')
 
-            self.lines = 0
+    def _get_folders(self) -> None:
+        for folder in self.path.iterdir():
+            if folder.is_dir():
+                self._folder.append(
+                    f'{self._space()}|_{EMOJI_FOLDER} {folder.name}'
+                )
 
-    def get_folders(self) -> None:
-        folders = [folder for folder in os.listdir(self.path)
-                   if os.path.isdir(os.path.join(self.path, folder))]
-
-        for folder in folders:
-            self.folder += f'\n{"  "*(self.lines)}|_{EMOJI_B} {folder}'
-
-    def get_files(self) -> None:
-        files = [file for file in os.listdir(self.path)
-                 if os.path.isfile(os.path.join(self.path, file))]
-
-        for file in files:
-            self.file += f'\n{"  "*(self.lines)}|_{EMOJI_C} {file}'
+    def _get_files(self) -> None:
+        for file in self.path.iterdir():
+            if file.is_file():
+                self._file.append(
+                    f'{self._space()}|_{EMOJI_FILE} {file.name}'
+                )
 
     def __str__(self) -> str:
-        self.get_base()
-        self.get_folders()
-        self.get_files()
+        self._get_base()
+        self._base = ''.join(self._base)
 
-        return self.base + self.folder + self.file
+        self._get_folders()
+        self._folder = ''.join(self._folder)
+
+        self._get_files()
+        self._file = ''.join(self._file)
+
+        return self._base + self._folder + self._file
