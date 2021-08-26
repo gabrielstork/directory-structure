@@ -78,7 +78,7 @@ print(path)
 * Accessing a folder in current working directory.
 
 ```python
-path = Tree('./directory-structure', absolute=True)
+path = Tree('./directory_structure', absolute=True)
 print(path)
 ```
 
