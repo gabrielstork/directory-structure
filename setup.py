@@ -12,16 +12,13 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/gabrielstork/directory-structure',
-    project_urls={
-        'Bug Tracker': 'https://github.com/gabrielstork/directory-structure/issues',
-    },
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    package_dir={'': 'src'},
-    packages=setuptools.find_packages(where='src'),
+    package_dir={'': '.'},
+    packages=setuptools.find_packages(where='.'),
     python_requires='>=3',
     install_requires=['emoji'],
 )
