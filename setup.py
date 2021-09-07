@@ -5,21 +5,22 @@ with open('README.md', 'r', encoding='utf-8') as file:
 
 setuptools.setup(
     name='directory-structure',
-    version='1.1.0',
-    author='Gabriel Stork',
-    author_email='storkdeveloper@gmail.com',
+    version='1.1.1',
     description='Print a directory tree structure in your Python code.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/gabrielstork/directory-structure',
+    author='Gabriel Stork',
+    author_email='storkdeveloper@gmail.com',
+    license='MIT',
     classifiers=[
+        'Development Status :: 5 - Production/Stable'
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    package_dir={'': '.'},
-    packages=setuptools.find_packages(where='.'),
-    python_requires='>=3',
+    keywords='directory structure tree emoji folder file',
+    packages=setuptools.find_packages(),
     install_requires=['emoji'],
+    python_requires='>=3',
 )
-
