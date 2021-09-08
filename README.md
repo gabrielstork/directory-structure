@@ -35,7 +35,7 @@ pip install -r requirements.txt
 from directory_structure import Tree
 ```
 
-* Using absolute path.
+Using absolute path as an argument.
 
 ```python
 path = Tree('C:/Users/User/Desktop/directory-structure', absolute=True)
@@ -50,7 +50,7 @@ print(path)
       |_📂 directory-structure
         |_📁 .git
         |_📁 directory_structure
-        |_📁 dist
+        |_📄 .gitignore
         |_📄 LICENSE
         |_📄 pyproject.toml
         |_📄 README.md
@@ -67,7 +67,7 @@ print(path)
 📂 directory-structure
 |_📁 .git
 |_📁 directory_structure
-|_📁 dist
+|_📄 .gitignore
 |_📄 LICENSE
 |_📄 pyproject.toml
 |_📄 README.md
@@ -75,7 +75,7 @@ print(path)
 |_📄 setup.py
 ```
 
-* Accessing a folder in current working directory.
+Accessing a folder in current working directory.
 
 ```python
 path = Tree('./directory_structure', absolute=True)
@@ -104,7 +104,26 @@ print(path)
 |_📄 __init__.py
 ```
 
-* Getting all from the directory where your current working directory is.
+Getting all from the directory where your current working directory is.
+
+```python
+path = Tree('../', absolute=True)
+print(path)
+```
+
+```text
+📂 C:
+|_📂 Users
+  |_📂 User
+    |_📂 Desktop
+      |_📁 directory-structure
+      |_📄 Discord.lnk
+      |_📄 Spotify.lnk
+      |_📄 Steam.lnk
+      |_📄 Telegram.lnk
+      |_📄 Visual Studio Code.lnk
+      |_📄 WhatsApp.lnk
+```
 
 ```python
 path = Tree('../', absolute=False)
@@ -113,24 +132,14 @@ print(path)
 
 ```text
 📂 Desktop
-|_📁 dados-futebol-brasileiro
 |_📁 directory-structure
-|_📁 fast-ml
-|_📁 learning-django
-|_📁 text-codifier
-|_📁 to-do-list
 |_📄 Discord.lnk
-|_📄 Owlboy.url
 |_📄 Spotify.lnk
 |_📄 Steam.lnk
-|_📄 Sublime Text 3.lnk
 |_📄 Telegram.lnk
-|_📄 The Binding of Isaac Rebirth.url
 |_📄 Visual Studio Code.lnk
 |_📄 WhatsApp.lnk
 ```
-
-You can write any valid path, and it will work. These were only few examples.
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://github.com/gabrielstork)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/gabrielstork)
