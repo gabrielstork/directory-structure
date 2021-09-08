@@ -14,7 +14,7 @@ setuptools.setup(
     author_email='storkdeveloper@gmail.com',
     license='MIT',
     classifiers=[
-        'Development Status :: 5 - Production/Stable'
+        'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
