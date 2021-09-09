@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as file:
 
 setuptools.setup(
     name='directory-structure',
-    version='1.1.1',
+    version='1.1.2',
     description='Print a directory tree structure in your Python code.',
     long_description=long_description,
     long_description_content_type='text/markdown',
