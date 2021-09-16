@@ -1,7 +1,6 @@
 import pathlib
 import emoji
 
-
 EMOJI_BASE = emoji.emojize(':open_file_folder:')
 EMOJI_FOLDER = emoji.emojize(':file_folder:')
 EMOJI_FILE = emoji.emojize(':page_facing_up:')
